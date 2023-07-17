@@ -1,16 +1,24 @@
+import "./App.css"
 import About from './components/About';
-import AppBarComp from './components/AppBar';
+import Header from './components/Header';
+import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import Home from './components/Home';
 import Footer from './components/Footer';
-import "./App.css"
+import Services from './components/Services';
+import ContactUs from './components/ContactUs';
 function App() {
   return (
     <div className="App">
-      <AppBarComp/>
-      <Home/>
-      <About/>
+      <BrowserRouter>
+      <Header/>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/about' element={<About/>}/>
+        <Route path='/services' element={<Services/>}/>
+        <Route path='/contact_us' element={<ContactUs/>}/>
+      </Routes>
       <Footer/>
-      
+      </BrowserRouter> 
     </div>
   );
 }
