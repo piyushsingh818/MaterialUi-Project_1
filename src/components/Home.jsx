@@ -51,7 +51,6 @@ const CardContainer = styled.div`
   max-width: 100vw; /* Adjust the max-width to fit your desired layout */
   margin: 0 auto; /* Centers the cards on the page */
   margin-left:30px;
-  margin-top:80px;
 `;
 
 const StyledCard = styled.div`

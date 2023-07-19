@@ -2,7 +2,7 @@ import React from 'react'
 
 const LoginPage = () => {
   return (
-    <div style={{marginTop:"80px"}}>LoginPage</div>
+    <div>LoginPage</div>
   )
 }
 
