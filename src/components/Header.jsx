@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
-import { AppBar, Button, styled, InputBase, Tab, Tabs, Toolbar, alpha, Avatar } from '@mui/material';
+import { AppBar, Button, styled, InputBase, Tab, Tabs, Toolbar, alpha, Avatar, Icon, Badge } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 const Header = () => {
+
+  const [open, setOpen] = useState(false);
 
   return (
     <>
@@ -19,26 +22,41 @@ const Header = () => {
             </StyledInputBase>
           </Search>
           <Tabs style={{ marginLeft: "auto" }}>
-            <Tab component={Link} to="/" label="Products" />
-            <Tab component={Link} to="/services" label="Services" />
-            <Tab component={Link} to="/contact_us" label="Contact us" />
-            <Tab component={Link} to="/about" label="About us" />
+            <Tab component={Link} sx={{color:"white"}} to="/" label="Products" />
+            <Tab component={Link} sx={{color:"white"}} to="/services" label="Services" />
+            <Tab component={Link} sx={{color:"white"}} to="/contact_us" label="Contact us" />
+            <Tab component={Link} sx={{color:"white"}} to="/about" label="About us" />
           </Tabs>
           <Button component={Link} to="/login" sx={{ marginLeft: "auto" }} variant='contained'>Login</Button>
           <Button sx={{ marginLeft: "10px" }} variant='contained'>Signup</Button>
-          <Avatar>
-            <Menu
-              id="basic-menu"
-              MenuListProps={{
-                'aria-labelledby': 'basic-button',
-              }}
-            >
-              <MenuItem >Profile</MenuItem>
-              <MenuItem >My account</MenuItem>
-              <MenuItem >Logout</MenuItem>
-            </Menu>
-          </Avatar>
+          <Icon sx={{ padding: "20px" }}>
+            <Badge badgeContent={2} color="error">
+              <ShoppingCartIcon />
+            </Badge>
+          </Icon>
+          <Avatar
+            onClick={e => setOpen(true)}
+          />
         </Toolbar>
+        <Menu
+          sx={{ marginTop: "40px" }}
+          id="demo-positioned-menu"
+          open={open}
+          onClose={e => setOpen(false)}
+          aria-labelledby="demo-positioned-button"
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+        >
+          <MenuItem >Profile</MenuItem>
+          <MenuItem >My account</MenuItem>
+          <MenuItem >Logout</MenuItem>
+        </Menu>
       </AppBar>
     </>
   )

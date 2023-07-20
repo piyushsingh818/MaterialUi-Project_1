@@ -1,9 +1,16 @@
-import { Card, Typography } from '@mui/material';
 import React, { useState, useEffect } from 'react'
+import { ButtonGroup,Typography, Button } from '@mui/material';
 import { styled } from 'styled-components';
+import { IconButton } from '@mui/material';
+import { Favorite, FavoriteBorder } from '@mui/icons-material';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
+  const [isLiked, setIsLiked] = useState(false);
+
+  const handleLikeClick = () => {
+    setIsLiked(!isLiked);
+  };
 
   useEffect(() => {
     const url = "https://fakestoreapi.com/products";
@@ -34,6 +41,14 @@ const Home = () => {
               <span style={{ margin: '10px' }}>Rate: {item.rating.rate}</span>
               <span style={{ margin: '10px' }}>Price: {item.price}</span>
               <span style={{ margin: '10px' }}>Count: {item.rating.count}</span>
+            </div>
+            <div style={{ alignItems: "center", display: "flex", margin: "10px" }}>
+              <ButtonGroup>
+                <Button>Add to cart</Button>
+              </ButtonGroup>
+              <IconButton onClick={handleLikeClick} key={item.id} color={isLiked ? 'error' : 'default'}>
+                {isLiked ? <Favorite /> : <FavoriteBorder />}
+              </IconButton>
             </div>
           </StyledCard>
         </section>
