@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link,useLocation } from 'react-router-dom';
 import { AppBar, Button, styled, InputBase, Tab, Tabs, Toolbar, alpha, Avatar, Icon, Badge } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import Menu from '@mui/material/Menu';
@@ -9,9 +9,11 @@ const Header = () => {
 
   const [open, setOpen] = useState(false);
 
+  const location = useLocation();
+  const isLoginPage = location.pathname === '/login';
   return (
     <>
-      <AppBar position="sticky">
+     {!isLoginPage && ( <AppBar position="sticky">
         <Toolbar>
           <h1>Logo</h1>
           <Search style={{ marginLeft: "auto" }}>
@@ -27,8 +29,8 @@ const Header = () => {
             <Tab component={Link} sx={{color:"white"}} to="/contact_us" label="Contact us" />
             <Tab component={Link} sx={{color:"white"}} to="/about" label="About us" />
           </Tabs>
-          <Button component={Link} to="/login" sx={{ marginLeft: "auto" }} variant='contained'>Login</Button>
-          <Button sx={{ marginLeft: "10px" }} variant='contained'>Signup</Button>
+          {/* <Button component={Link} to="/login" sx={{ marginLeft: "auto" }} variant='contained'>{!isLoginPage ? "LogOut" : "Login"}</Button> */}
+          <Button component={Link} to="/signup" sx={{ marginLeft: "10px" }} variant='contained'>Signup</Button>
           <Icon sx={{ padding: "20px" }}>
             <Badge badgeContent={2} color="error">
               <ShoppingCartIcon />
@@ -58,6 +60,7 @@ const Header = () => {
           <MenuItem >Logout</MenuItem>
         </Menu>
       </AppBar>
+     )}
     </>
   )
 }

@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import {
-  AppBar,
-  Toolbar,
-  Typography,
   Container,
   TextField,
   Button,
@@ -20,19 +17,18 @@ const LoginPage = () => {
     setPassword(event.target.value);
   };
 
+
   const handleLogin = () => {
     // Your login logic here
     console.log('Username:', username);
     console.log('Password:', password);
   };
 
+
+
   return (
     <>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6">Login Page</Typography>
-        </Toolbar>
-      </AppBar>
+    
       <Container maxWidth="xs" sx={{ mt: 5 }}>
         <TextField
           label="Username"

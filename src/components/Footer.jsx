@@ -1,10 +1,15 @@
 import React from 'react'
 import { styled } from '@mui/material/styles';
+import { Link,useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
 
 const Footer = () => {
+
+  const location = useLocation();
+
+  const isLoginPage = location.pathname === '/login';
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -17,7 +22,8 @@ const Footer = () => {
   }));
 
   return (
-    <Box sx={{ flexGrow: 1 ,backgroundColor:"#1976d2",marginTop:"3rem"}}>
+    <>
+   { !isLoginPage && ( <Box sx={{ flexGrow: 1 ,backgroundColor:"#1976d2",marginTop:"3rem"}}>
       <Grid container spacing={4}>
         <Grid xs={12} md={5} lg={4}>
           <Item>Email subscribe section</Item>
@@ -107,7 +113,8 @@ const Footer = () => {
           </Grid> */}
         {/* </Grid> */}
       </Grid>
-    </Box>
+    </Box>)}
+    </>
   )
 }
 
