@@ -7,6 +7,7 @@ import { Favorite, FavoriteBorder } from '@mui/icons-material';
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [isLiked, setIsLiked] = useState(false);
+  // const [likedProducts, setLikedProducts] = useState({});
 
   const handleLikeClick = () => {
     setIsLiked(!isLiked);
@@ -46,7 +47,7 @@ const Home = () => {
               <ButtonGroup>
                 <Button>Add to cart</Button>
               </ButtonGroup>
-              <IconButton onClick={handleLikeClick} key={item.id} color={isLiked ? 'error' : 'default'}>
+              <IconButton onClick={() => handleLikeClick(item.id)} color={isLiked ? 'error' : 'default'}>
                 {isLiked ? <Favorite /> : <FavoriteBorder />}
               </IconButton>
             </div>

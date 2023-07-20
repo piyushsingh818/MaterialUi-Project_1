@@ -9,7 +9,7 @@ const Footer = () => {
 
   const location = useLocation();
 
-  const isLoginPage = location.pathname === '/login';
+  const isLoginPage = location.pathname === '/';
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -58,60 +58,10 @@ const Footer = () => {
               </Box>
             </Item>
           </Grid>
-          {/* <Grid xs={6} lg={3}>
-            <Item>
-              <Box
-                id="category-c"
-                sx={{ fontSize: '12px', textTransform: 'uppercase' }}
-              >
-                Category C
-              </Box>
-              <Box component="ul" aria-labelledby="category-c" sx={{ pl: 2 }}>
-                <li>Link 3.1</li>
-                <li>Link 3.2</li>
-                <li>Link 3.3</li>
-              </Box>
-            </Item>
-          </Grid> */}
-          {/* <Grid xs={6} lg={3}>
-            <Item>
-              <Box
-                id="category-d"
-                sx={{ fontSize: '12px', textTransform: 'uppercase' }}
-              >
-                Category D
-              </Box>
-              <Box component="ul" aria-labelledby="category-d" sx={{ pl: 2 }}>
-                <li>Link 4.1</li>
-                <li>Link 4.2</li>
-                <li>Link 4.3</li>
-              </Box>
-            </Item>
-          </Grid> */}
         </Grid>
-        {/* <Grid
-          xs={12}
-          container
-          justifyContent="space-between"
-          alignItems="center"
-          flexDirection={{ xs: 'column', sm: 'row' }}
-          sx={{ fontSize: '12px' }}
-        > */}
           <Grid sx={{ order: { xs: 2, sm: 1 } }}>
             <Item>© Copyright</Item>
           </Grid>
-          {/* <Grid container columnSpacing={1} sx={{ order: { xs: 1, sm: 2 } }}>
-            <Grid>
-              <Item>Link A</Item>
-            </Grid>
-            <Grid>
-              <Item>Link B</Item>
-            </Grid>
-            <Grid>
-              <Item>Link C</Item>
-            </Grid>
-          </Grid> */}
-        {/* </Grid> */}
       </Grid>
     </Box>)}
     </>

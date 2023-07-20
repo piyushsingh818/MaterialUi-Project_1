@@ -10,7 +10,7 @@ const Header = () => {
   const [open, setOpen] = useState(false);
 
   const location = useLocation();
-  const isLoginPage = location.pathname === '/login';
+  const isLoginPage = location.pathname === '/';
   return (
     <>
      {!isLoginPage && ( <AppBar position="sticky">
@@ -24,7 +24,7 @@ const Header = () => {
             </StyledInputBase>
           </Search>
           <Tabs style={{ marginLeft: "auto" }}>
-            <Tab component={Link} sx={{color:"white"}} to="/" label="Products" />
+            <Tab component={Link} sx={{color:"white"}} to="/home" label="Products" />
             <Tab component={Link} sx={{color:"white"}} to="/services" label="Services" />
             <Tab component={Link} sx={{color:"white"}} to="/contact_us" label="Contact us" />
             <Tab component={Link} sx={{color:"white"}} to="/about" label="About us" />
