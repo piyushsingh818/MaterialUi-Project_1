@@ -6,11 +6,12 @@ import { Favorite, FavoriteBorder } from '@mui/icons-material';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
-  const [isLiked, setIsLiked] = useState(false);
-  // const [likedProducts, setLikedProducts] = useState({});
+  const [isLiked, setIsLiked] = useState([]);
 
-  const handleLikeClick = () => {
-    setIsLiked(!isLiked);
+  const handleLikeClick = (id) => { 
+    setIsLiked(isLiked.concat(id));
+    var filteredArray = isLiked.filter(function(e) { return e !== id })
+    console.log("filter", filteredArray);
   };
 
   useEffect(() => {
@@ -47,9 +48,11 @@ const Home = () => {
               <ButtonGroup>
                 <Button>Add to cart</Button>
               </ButtonGroup>
-              <IconButton onClick={() => handleLikeClick(item.id)} color={isLiked ? 'error' : 'default'}>
-                {isLiked ? <Favorite /> : <FavoriteBorder />}
+              <IconButton onClick={() => handleLikeClick(item.id)} color={item.id==isLiked.find((e)=> e===item.id) ? 'error' : ''}>
+                <Favorite /> 
               </IconButton>
+              {/* <p>{JSON.stringify(isLiked.find((e)=> e===item.id))}</p> */}
+
             </div>
           </StyledCard>
         </section>

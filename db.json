@@ -1,0 +1,37 @@
+{
+  "users": [
+    {
+      "username": "piyu",
+      "password": "sdfgh",
+      "fullName": "piyush singh",
+      "email": "spiyush818@gmail.com",
+      "phone": "8840632092",
+      "country": "India",
+      "address": "ssfsdfdfdfd",
+      "gender": "Male",
+      "id": 1
+    },
+    {
+      "username": "piyu",
+      "password": "sdfgh",
+      "fullName": "piyush singh",
+      "email": "spiyush818@gmail.com",
+      "phone": "8840632092",
+      "country": "India",
+      "address": "ssfsdfdfdfd",
+      "gender": "Male",
+      "id": 2
+    },
+    {
+      "username": "piyu",
+      "password": "sdfgh",
+      "fullName": "piyush singh",
+      "email": "spiyush818@gmail.com",
+      "phone": "8840632092",
+      "country": "India",
+      "address": "ssfsdfdfdfd",
+      "gender": "Male",
+      "id": 3
+    }
+  ]
+}

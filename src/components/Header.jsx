@@ -9,11 +9,11 @@ const Header = () => {
 
   const [open, setOpen] = useState(false);
 
-  const location = useLocation();
-  const isLoginPage = location.pathname === '/';
+  // const location = useLocation();
+  // const isLoginPage = location.pathname === '/';
   return (
     <>
-     {!isLoginPage && ( <AppBar position="sticky">
+     <AppBar position="sticky">
         <Toolbar>
           <h1>Logo</h1>
           <Search style={{ marginLeft: "auto" }}>
@@ -60,7 +60,7 @@ const Header = () => {
           <MenuItem >Logout</MenuItem>
         </Menu>
       </AppBar>
-     )}
+     
     </>
   )
 }
