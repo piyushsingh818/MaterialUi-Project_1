@@ -9,10 +9,11 @@ const Header = () => {
 
   const [open, setOpen] = useState(false);
 
-  // const location = useLocation();
-  // const isLoginPage = location.pathname === '/';
+  const location = useLocation();
+  const isLoginPage = location.pathname === '/login';
   return (
     <>
+    {!isLoginPage &&
      <AppBar position="sticky">
         <Toolbar>
           <h1>Logo</h1>
@@ -24,12 +25,12 @@ const Header = () => {
             </StyledInputBase>
           </Search>
           <Tabs style={{ marginLeft: "auto" }}>
-            <Tab component={Link} sx={{color:"white"}} to="/home" label="Products" />
+            <Tab component={Link} sx={{color:"white"}} to="/" label="Products" />
             <Tab component={Link} sx={{color:"white"}} to="/services" label="Services" />
             <Tab component={Link} sx={{color:"white"}} to="/contact_us" label="Contact us" />
             <Tab component={Link} sx={{color:"white"}} to="/about" label="About us" />
           </Tabs>
-          {/* <Button component={Link} to="/login" sx={{ marginLeft: "auto" }} variant='contained'>{!isLoginPage ? "LogOut" : "Login"}</Button> */}
+          <Button component={Link} to="/login" sx={{ marginLeft: "auto" }} variant='contained'>{!isLoginPage ? "LogOut" : "Login"}</Button>
           <Button component={Link} to="/signup" sx={{ marginLeft: "10px" }} variant='contained'>Signup</Button>
           <Icon sx={{ padding: "20px" }}>
             <Badge badgeContent={2} color="error">
@@ -60,7 +61,7 @@ const Header = () => {
           <MenuItem >Logout</MenuItem>
         </Menu>
       </AppBar>
-     
+}    
     </>
   )
 }

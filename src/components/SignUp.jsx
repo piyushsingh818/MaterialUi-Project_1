@@ -14,6 +14,7 @@ import {
   Box,
   Card,
 } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const countries = ['India', 'USA', 'UAE','China','Russia']; // Replace with your actual list of countries
 
@@ -29,17 +30,28 @@ const SignUp = () => {
   const [gender, setGender ] = useState("");
   const [address, setAddress ] = useState("");
 
+  const navigate = useNavigate();
+  
   const handleSubmit =(e)=>{
     e.preventDefault();
-    let registrationObj = {username,password,fullName,email,phone,country,address,gender}
+    let registrationObj = {username,password,fullName,email,phone,country,address,gender};
+    if(isUserRegistered(username)){
+      console.warn("already registered")
+      return;
+    }
     fetch("http://localhost:8000/users",{
       method:"POST",
       headers:{"content-type" :"application/json"},
       body:JSON.stringify(registrationObj),
     }).then((res)=>{console.warn("Registred successfully")
+          navigate("/login");
   }).catch((err)=>{console.warn(err.message)
   });
   }
+
+  const isUserRegistered = (username)=>{
+    return false;
+  };
 
   return (
     <Box p={3}>
