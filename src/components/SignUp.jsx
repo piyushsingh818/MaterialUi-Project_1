@@ -35,23 +35,19 @@ const SignUp = () => {
   const handleSubmit =(e)=>{
     e.preventDefault();
     let registrationObj = {username,password,fullName,email,phone,country,address,gender};
-    if(isUserRegistered(username)){
-      console.warn("already registered")
-      return;
-    }
     fetch("http://localhost:8000/users",{
       method:"POST",
       headers:{"content-type" :"application/json"},
       body:JSON.stringify(registrationObj),
-    }).then((res)=>{console.warn("Registred successfully")
+    }).then((res)=>{
+      if (!res.ok) {
+        throw new Error("Registration failed"); // Throw an error if registration fails
+      }
+      console.warn("Registred successfully",res)
           navigate("/login");
-  }).catch((err)=>{console.warn(err.message)
-  });
+  }).catch(()=>{}
+  );
   }
-
-  const isUserRegistered = (username)=>{
-    return false;
-  };
 
   return (
     <Box p={3}>

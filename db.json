@@ -1,114 +1,26 @@
 {
   "users": [
     {
-      "username": "piyu",
-      "password": "sdfgh",
+      "username": "test1",
+      "password": "password",
       "fullName": "piyush singh",
       "email": "spiyush818@gmail.com",
       "phone": "8840632092",
       "country": "India",
-      "address": "ssfsdfdfdfd",
+      "address": "address1",
       "gender": "Male",
       "id": 1
     },
     {
       "username": "piyu",
-      "password": "sdfgh",
+      "password": "password",
       "fullName": "piyush singh",
       "email": "spiyush818@gmail.com",
       "phone": "8840632092",
       "country": "India",
-      "address": "ssfsdfdfdfd",
+      "address": "qwferg",
       "gender": "Male",
       "id": 2
-    },
-    {
-      "username": "piyu",
-      "password": "sdfgh",
-      "fullName": "piyush singh",
-      "email": "spiyush818@gmail.com",
-      "phone": "8840632092",
-      "country": "India",
-      "address": "ssfsdfdfdfd",
-      "gender": "Male",
-      "id": 3
-    },
-    {
-      "username": "piyu",
-      "password": "singh@1",
-      "fullName": "piyush singh",
-      "email": "spiyush818@gmail.com",
-      "phone": "8840632092",
-      "country": "India",
-      "address": "asdfghjkl",
-      "gender": "Male",
-      "id": 4
-    },
-    {
-      "username": "piyu",
-      "password": "sdfgh",
-      "fullName": "piyush singh",
-      "email": "spiyush818@gmail.com",
-      "phone": "8840632092",
-      "country": "India",
-      "address": "fvdf chnhb",
-      "gender": "Male",
-      "id": 5
-    },
-    {
-      "username": "piyu",
-      "password": "sdfgh",
-      "fullName": "piyush singh",
-      "email": "spiyush818@gmail.com",
-      "phone": "8840632092",
-      "country": "India",
-      "address": "fvdf chnhb",
-      "gender": "Male",
-      "id": 6
-    },
-    {
-      "username": "piyu",
-      "password": "asdfghjkl",
-      "fullName": "piyush singh",
-      "email": "spiyush818@gmail.com",
-      "phone": "8840632092",
-      "country": "India",
-      "address": "fdbfcgv guyjgik",
-      "gender": "Male",
-      "id": 7
-    },
-    {
-      "username": "piyu",
-      "password": "gbfgvjmh",
-      "fullName": "piyush singh",
-      "email": "spiyush818@gmail.com",
-      "phone": "8840632092",
-      "country": "India",
-      "address": "gbnghbk  hgnvmhbjkmj",
-      "gender": "Male",
-      "id": 8
-    },
-    {
-      "username": "piyu",
-      "password": "qwdefr3",
-      "fullName": "piyush singh",
-      "email": "spiyush818@gmail.com",
-      "phone": "8840632092",
-      "country": "India",
-      "address": "sxweceerr",
-      "gender": "Male",
-      "id": 9
-    },
-    {
-      "username": "piyu",
-      "password": "Piyush@1",
-      "fullName": "piyush singh",
-      "email": "spiyush818@gmail.com",
-      "phone": "8840632092",
-      "country": "India",
-      "address": "address",
-      "gender": "Male",
-      "id": 10
     }
   ]
 }
