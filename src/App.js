@@ -8,6 +8,7 @@ import Services from './components/Services';
 import ContactUs from './components/ContactUs';
 import LoginPage from "./components/LoginPage";
 import SignUp from "./components/SignUp";
+import UserProfilePage from "./components/UserProfilePage";
 function App() {
   return (
     <div className="App">
@@ -20,6 +21,7 @@ function App() {
         <Route path='/contact_us' element={<ContactUs/>}/>
         <Route path='/login' element={<LoginPage/>}/>
         <Route path='/signup' element={<SignUp/>}/>
+        <Route path='/profile' element={<UserProfilePage/>}/>
       </Routes>
       <Footer/>
       </BrowserRouter> 

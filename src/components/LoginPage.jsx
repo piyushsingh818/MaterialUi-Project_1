@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Container,
   TextField,
@@ -7,61 +7,37 @@ import {
   Card,
 } from '@mui/material';
 import { NavLink, useNavigate } from 'react-router-dom';
+import axios from "axios";
+
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error , seterror] = useState("");
+  const [logindata, setloginData]= useState([])
   const navigate = useNavigate();
-
-  const handleLogin = (e) => {
-  e.preventDefault();
-  if (validate()) {
-    fetch("http://localhost:8000/users/" + username)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("User not found"); // Throw an error if the user is not found
-        }
-        return res.json();
-      })
-      .then((response) => {
-        // console.log(response); // Process the response data here
-        if(Object.keys(response).length === 0){
-          console.log("entervaliduser name",response)
-        }else {
-          if(response.password === password){
-            navigate("/")
-          }else {
-            console.log("please enter valid credentials")
-          }
-        }
-      })
-      .catch((err) => {
-        console.warn("any-err", err.message);
-      });
-  }
-};
-  const validate = () => {
-    let filledData = true;
-    if(username === null || username === ""){
-      console.log("empty username")
-      filledData = false;
-    }
-    if(password === null || password === ""){
-      console.log("empty password")
-      filledData = false;
-    }
-    return filledData;
-}
-  const signUpNavigate = () => {
-    // Your login logic here
-    // console.log('Username:', username);
-    // console.log('Password:', password);
-  };
-
  
+    useEffect(()=>{
+      (async function(){
+        let response= await axios.get("http://localhost:8000/users");
+        console.log("response", response.data);
+        setloginData(response.data);
+      })()
+    },[]);
 
-
-
+    const handleLogin=(e)=>{
+      e.preventDefault();
+      let usernamedata= logindata.map((name)=> name.username);
+      let passdata= logindata.map((pass)=> pass.password);
+      let loginName= usernamedata.filter((f)=> f==username);
+      let loginpass= passdata.filter((f)=> f==password);
+      if(loginName.length!=0 && loginpass.length!=0){
+          localStorage.setItem("loginAuth", JSON.stringify({username,password}))
+          window.location.href= "/"
+      }else{
+        alert("Invalid credentials!!")
+      }
+    }
   return (
     <>
     <Card sx={{ backgroundColor: "#f5f5f5", width: "350px", padding: '20px',marginLeft:"35%",marginTop:"80px" }}>
@@ -85,10 +61,11 @@ const LoginPage = () => {
           sx={{ mb: 2 }}
         />
         <ButtonGroup>
-        <Button variant="contained" type="submit" color="primary" style={{ marginRight: '10px' }} onClick={validate}>
+          <p style={{color:'red'}}>{error=="" ? "": error}</p>
+        <Button variant="contained" type="submit" color="primary" style={{ marginRight: '10px' }} >
           Login
         </Button>
-        <Button variant="outlined" color="primary" onClick={signUpNavigate}>
+        <Button variant="outlined" color="primary" >
           <NavLink to={"/signup"} style={{textDecoration:"none"}}>Sign Up</NavLink>
           
         </Button>

@@ -1,26 +1,15 @@
 {
   "users": [
     {
-      "username": "test1",
-      "password": "password",
+      "username": "singhPiyush",
+      "password": "password1",
       "fullName": "piyush singh",
       "email": "spiyush818@gmail.com",
       "phone": "8840632092",
       "country": "India",
-      "address": "address1",
+      "address": "addressss",
       "gender": "Male",
       "id": 1
-    },
-    {
-      "username": "piyu",
-      "password": "password",
-      "fullName": "piyush singh",
-      "email": "spiyush818@gmail.com",
-      "phone": "8840632092",
-      "country": "India",
-      "address": "qwferg",
-      "gender": "Male",
-      "id": 2
     }
   ]
 }

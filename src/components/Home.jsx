@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { ButtonGroup,Typography, Button } from '@mui/material';
+import { ButtonGroup, Typography, Button } from '@mui/material';
 import { styled } from 'styled-components';
 import { IconButton } from '@mui/material';
 import { Favorite, FavoriteBorder } from '@mui/icons-material';
+import { Navigate } from 'react-router-dom';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [isLiked, setIsLiked] = useState([]);
-
-  const handleLikeClick = (id) => { 
+  const loginstatus = localStorage.getItem("loginAuth");
+  const handleLikeClick = (id) => {
     setIsLiked(isLiked.concat(id));
-    var filteredArray = isLiked.filter(function(e) { return e !== id })
+    var filteredArray = isLiked.filter(function (e) { return e !== id })
     console.log("filter", filteredArray);
   };
 
@@ -30,34 +31,42 @@ const Home = () => {
   }, []);
 
   return (
-    <CardContainer>
-      {products.map((item) => (
-        <section key={item.id}>
-          <StyledCard>
-            <Typography variant="h6" align='center'>{item.title}</Typography>
-            <div>
-              <Typography align='center'><img src={item.image} alt={item.title} style={{ height: "200px", width: "200px", padding: "15px" }} /></Typography>
-            </div>
-            <StyledDescription>{item.description}</StyledDescription>
-            <div>
-              <span style={{ margin: '10px' }}>Rate: {item.rating.rate}</span>
-              <span style={{ margin: '10px' }}>Price: {item.price}</span>
-              <span style={{ margin: '10px' }}>Count: {item.rating.count}</span>
-            </div>
-            <div style={{ alignItems: "center", display: "flex", margin: "10px" }}>
-              <ButtonGroup>
-                <Button>Add to cart</Button>
-              </ButtonGroup>
-              <IconButton onClick={() => handleLikeClick(item.id)} color={item.id==isLiked.find((e)=> e===item.id) ? 'error' : ''}>
-                <Favorite /> 
-              </IconButton>
-              {/* <p>{JSON.stringify(isLiked.find((e)=> e===item.id))}</p> */}
+    <>
+      {!loginstatus || loginstatus == null ?
+        <>
+          <Navigate to="/login" />
+        </>
+        :
+        <CardContainer>
+          {products.map((item) => (
+            <section key={item.id}>
+              <StyledCard>
+                <Typography variant="h6" align='center'>{item.title}</Typography>
+                <div>
+                  <Typography align='center'><img src={item.image} alt={item.title} style={{ height: "200px", width: "200px", padding: "15px" }} /></Typography>
+                </div>
+                <StyledDescription>{item.description}</StyledDescription>
+                <div>
+                  <span style={{ margin: '10px' }}>Rate: {item.rating.rate}</span>
+                  <span style={{ margin: '10px' }}>Price: {item.price}</span>
+                  <span style={{ margin: '10px' }}>Count: {item.rating.count}</span>
+                </div>
+                <div style={{ alignItems: "center", display: "flex", margin: "10px" }}>
+                  <ButtonGroup>
+                    <Button>Add to cart</Button>
+                  </ButtonGroup>
+                  <IconButton onClick={() => handleLikeClick(item.id)} color={item.id == isLiked.find((e) => e === item.id) ? 'error' : ''}>
+                    <Favorite />
+                  </IconButton>
+                  {/* <p>{JSON.stringify(isLiked.find((e)=> e===item.id))}</p> */}
 
-            </div>
-          </StyledCard>
-        </section>
-      ))}
-    </CardContainer>
+                </div>
+              </StyledCard>
+            </section>
+          ))}
+        </CardContainer>
+      }
+    </>
   );
 };
 
