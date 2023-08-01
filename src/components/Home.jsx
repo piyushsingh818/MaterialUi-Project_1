@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from 'react'
-import { ButtonGroup, Typography, Button } from '@mui/material';
+import { ButtonGroup, Typography, Button, Card, CardHeader, CardMedia, CardContent, CardActions, Rating } from '@mui/material';
 import { styled } from 'styled-components';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ShareIcon from '@mui/icons-material/Share';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { IconButton } from '@mui/material';
-import { Favorite, FavoriteBorder } from '@mui/icons-material';
+import { Favorite, FavoriteBorder, Star } from '@mui/icons-material';
+import Collapse from '@mui/material/Collapse';
 import { Navigate } from 'react-router-dom';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
-  const [isLiked, setIsLiked] = useState([]);
   const loginstatus = localStorage.getItem("loginAuth");
-  const handleLikeClick = (id) => {
-    setIsLiked(isLiked.concat(id));
-    var filteredArray = isLiked.filter(function (e) { return e !== id })
-    console.log("filter", filteredArray);
+  const [expanded, setExpanded] = React.useState(false);
+
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
   };
 
   useEffect(() => {
@@ -30,6 +35,7 @@ const Home = () => {
     fetchData();
   }, []);
 
+
   return (
     <>
       {!loginstatus || loginstatus == null ?
@@ -37,34 +43,64 @@ const Home = () => {
           <Navigate to="/login" />
         </>
         :
-        <CardContainer>
-          {products.map((item) => (
-            <section key={item.id}>
-              <StyledCard>
-                <Typography variant="h6" align='center'>{item.title}</Typography>
-                <div>
-                  <Typography align='center'><img src={item.image} alt={item.title} style={{ height: "200px", width: "200px", padding: "15px" }} /></Typography>
-                </div>
-                <StyledDescription>{item.description}</StyledDescription>
-                <div>
-                  <span style={{ margin: '10px' }}>Rate: {item.rating.rate}</span>
-                  <span style={{ margin: '10px' }}>Price: {item.price}</span>
-                  <span style={{ margin: '10px' }}>Count: {item.rating.count}</span>
-                </div>
-                <div style={{ alignItems: "center", display: "flex", margin: "10px" }}>
-                  <ButtonGroup>
-                    <Button>Add to cart</Button>
-                  </ButtonGroup>
-                  <IconButton onClick={() => handleLikeClick(item.id)} color={item.id == isLiked.find((e) => e === item.id) ? 'error' : ''}>
-                    <Favorite />
-                  </IconButton>
-                  {/* <p>{JSON.stringify(isLiked.find((e)=> e===item.id))}</p> */}
+        <>
+          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", padding: "50px", marginTop: "15px" }}>
+            {
+              products.map((item) => (
+                <Card sx={{ width: "340px", margin: "60px" }}>
+                  <CardHeader title={item.title} subheader={item.id} />
+                  <CardMedia
+                    component="img"
+                    height="194"
+                    image={item.image}
+                    alt={item.id}
+                  />
+                  <CardContent>
+                    <div style={{ display: "flex", textAlign: "center" }}>
+                      <Typography variant="body2" color="text.secondary">
+                        <Rating name="read-only"
+                          value={item.rating.rate}
+                          precision={0.5} // Use 0.5 precision to show half stars
+                          readOnly // Set to read-only mode/>
+                        />
+                      </Typography>
+                      <span style={{ margin: "4px" }}>{item.rating.rate}</span>
+                      <Typography variant="body2" color="text.secondary">
+                        Reviews : {item.rating.count}
+                      </Typography>
+                    </div>
+                  </CardContent>
+                  <CardActions disableSpacing>
 
-                </div>
-              </StyledCard>
-            </section>
-          ))}
-        </CardContainer>
+                    <ExpandMore
+                      expand={expanded}
+                      onClick={handleExpandClick}
+                      aria-expanded={expanded}
+                      aria-label="show more"
+                    >
+                      <ExpandMoreIcon />
+                    </ExpandMore>
+                    <IconButton aria-label="add to favorites">
+                      <Favorite />
+                    </IconButton>
+                    <IconButton aria-label="share">
+                      <ShareIcon />
+                    </IconButton>
+                  </CardActions>
+                  <Collapse in={expanded} timeout="auto" unmountOnExit>
+                    <CardContent>
+                      <Typography paragraph>Details:</Typography>
+                      <Typography paragraph>
+                        {item.description}
+                      </Typography>
+                    </CardContent>
+                  </Collapse>
+                </Card>
+
+              ))
+            }
+          </div>
+        </>
       }
     </>
   );
@@ -72,26 +108,10 @@ const Home = () => {
 
 export default Home;
 
-const CardContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  max-width: 100vw; /* Adjust the max-width to fit your desired layout */
-  margin: 0 auto; /* Centers the cards on the page */
-  margin-left:30px;
-`;
-
-const StyledCard = styled.div`
-width: 410px;
-height: 550px;
-border: 1px solid #ccc;
-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-padding: 30px;
-margin: 10px;
-background-color: #f9f9f9; /* Light background color */
-color: #333; /* Font color */
-`;
-const StyledDescription = styled.div`
-color:cornflowerblue;
-font-family:system ui;
-`;
+const ExpandMore = styled((props) => {
+  const { expand, ...other } = props;
+  return <IconButton {...other} />;
+})(({ theme, expand }) => ({
+  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+  marginLeft: 'auto',
+}));

@@ -10,6 +10,17 @@
       "address": "addressss",
       "gender": "Male",
       "id": 1
+    },
+    {
+      "username": "piyush071",
+      "password": "password2",
+      "fullName": "piyush singh",
+      "email": "spiyush818@gmail.com",
+      "phone": "8840632092",
+      "country": "USA",
+      "address": "manjri",
+      "gender": "Male",
+      "id": 2
     }
   ]
 }

@@ -1,73 +1,88 @@
-import React from 'react'
-import { styled } from '@mui/material/styles';
-import { Link,useLocation } from 'react-router-dom';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Unstable_Grid2';
+import * as React from "react";
+import { useLocation } from "react-router-dom";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import { Facebook, Instagram, Twitter } from "@mui/icons-material";
+import { Box } from "@mui/material";
 
 const Footer = () => {
 
   const location = useLocation();
-
   const isLoginPage = location.pathname === '/login';
-
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-    backgroundColor:"#3494d0",
-    color:"white"
-  }));
 
   return (
     <>
-    {!isLoginPage && 
-    <Box sx={{ flexGrow: 1 ,backgroundColor:"#1976d2",marginTop:"3rem"}}>
-      <Grid container spacing={4}>
-        <Grid xs={12} md={5} lg={4}>
-          <Item>Email subscribe section</Item>
-        </Grid>
-        <Grid container xs={12} md={7} lg={8} spacing={4}>
-          <Grid xs={12} lg={3}>
-            <Item>
-              <Box
-                id="category-a"
-                sx={{ fontSize: '12px', textTransform: 'uppercase' }}
-              >
-              </Box>
-              <Box component="ul" aria-labelledby="category-a" sx={{ pl: 2,listStyle:"none"}}>
-                <li>Career</li>
-                <li>About Us</li>
-                <li>FAQ</li>
-              </Box>
-            </Item>
-          </Grid>
-          <Grid xs={6} lg={3}>
-            <Item>
-              <Box
-                id="category-b"
-                sx={{ fontSize: '12px', textTransform: 'uppercase' }}
-              >
-
-              </Box>
-              <Box component="ul" aria-labelledby="category-b" sx={{ pl: 2,listStyle:"none" }}>
-                <li>Career</li>
-                <li>About Us</li>
-                <li>FAQ</li>
-              </Box>
-            </Item>
-          </Grid>
-        </Grid>
-          <Grid sx={{ order: { xs: 2, sm: 1 } }}>
-            <Item>© Copyright</Item>
-          </Grid>
-      </Grid>
-    </Box>
-}
+      {!isLoginPage &&
+        <Box
+          component="footer"
+          sx={{
+            backgroundColor: (theme) =>
+              theme.palette.mode === "light"
+                ? theme.palette.grey[200]
+                : theme.palette.grey[800],
+            p: 6,
+          }}
+        >
+          <Container maxWidth="lg">
+            <Grid container spacing={5}>
+              <Grid item xs={12} sm={4}>
+                <Typography variant="h6" color="text.primary" gutterBottom>
+                  About Us
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  We are XYZ company, dedicated to providing the best service to our
+                  customers.
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <Typography variant="h6" color="text.primary" gutterBottom>
+                  Contact Us
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  123 Main Street, Anytown, USA
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Email: info@example.com
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Phone: +1 234 567 8901
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <Typography variant="h6" color="text.primary" gutterBottom>
+                  Follow Us
+                </Typography>
+                <Link href="https://www.facebook.com/" color="inherit">
+                  <Facebook />
+                </Link>
+                <Link
+                  href="https://www.instagram.com/"
+                  color="inherit"
+                  sx={{ pl: 1, pr: 1 }}
+                >
+                  <Instagram />
+                </Link>
+                <Link href="https://www.twitter.com/" color="inherit">
+                  <Twitter />
+                </Link>
+              </Grid>
+            </Grid>
+            <hr></hr>
+            <Box mt={5}>
+              <Typography variant="body2" color="text.secondary" align="center">
+                {"Copyright © "}
+                <Link color="inherit" href="https://your-website.com/">
+                  Your Website
+                </Link>{" "}
+                {new Date().getFullYear()}
+                {"."}
+              </Typography>
+            </Box>
+          </Container>
+        </Box>}
     </>
-  )
+  );
 }
-
-export default Footer
+export default Footer;
